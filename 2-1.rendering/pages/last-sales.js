@@ -1,31 +1,53 @@
 import {useEffect, useState} from "react";
+import useSWR from 'swr';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const LastSalesPage = (props) => {
     const [sales, setSales] = useState();
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        setIsLoading(true);
-        fetch(
-            'https://nextjs-course-c0e88-default-rtdb.firebaseio.com/sales.json'
-        ).then(response => response.json())
-            .then(data => {
-                const transformedSales = [];
+    const {data, error} = useSWR('https://nextjs-course-c0e88-default-rtdb.firebaseio.com/sales.json');
+    useEffect(()=>{
+        if(data){
+            const transformedSales = [];
+            for (const key in data) {
+                transformedSales.push({
+                    id:key,
+                    username: data[key].username,
+                    volume:data[key].volume
+                });
+            }
+            setSales(transformedSales);
+        }
+    },[data]);
 
-                for (const key in data) {
-                    transformedSales.push({
-                        id:key,
-                        username: data[key].username,
-                        volume:data[key].volume
-                    });
-                }
+    // useEffect(() => {
+    //     setIsLoading(true);
+    //     fetch(
+    //         'URL'
+    //     ).then(response => response.json())
+    //         .then(data => {
+    //             const transformedSales = [];
+    //
+    //             for (const key in data) {
+    //                 transformedSales.push({
+    //                     id:key,
+    //                     username: data[key].username,
+    //                     volume:data[key].volume
+    //                 });
+    //             }
+    //
+    //             setSales(transformedSales);
+    //             setIsLoading(false);
+    //         });
+    // }, []);
 
-                setSales(transformedSales);
-                setIsLoading(false);
-            });
-    }, []);
+    if(error){
+        return <p>Failed to load.</p>;
+    }
 
-    if(isLoading) {
+    if(!data || !sales) {
         return <p>Loading...</p>;
     }
 
