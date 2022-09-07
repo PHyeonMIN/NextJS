@@ -33,7 +33,7 @@ const handler = async (req,res) => {
     }
     if(req.method === 'GET'){
         const db = client.db();
-        const documents = await db.collection('comments').find().sort({_id:-1}).toArray();
+        const documents = await db.collection('comments').find({eventId:eventId}).sort({_id:-1}).toArray();
 
         res.status(200).json({comments: documents});
     }
