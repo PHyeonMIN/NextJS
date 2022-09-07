@@ -32,12 +32,10 @@ const handler = async (req,res) => {
         res.status(201).json({message:'Added comment.', comment: newComment});
     }
     if(req.method === 'GET'){
-        const dummyList = [
-            {id:'c1', name:'Max', text:'A first comment!'},
-            {id:'c2', name:'Manuel', text:'A second comment!'},
-        ];
+        const db = client.db();
+        const documents = await db.collection('comments').find().sort({_id:-1}).toArray();
 
-        res.status(200).json({comments: dummyList});
+        res.status(200).json({comments: documents});
     }
     client.close();
 }
