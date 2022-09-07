@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f96141eb-6f61-4fa1-9e1e-712035f7f132" name="Changes" comment="# rendering 기초 초기세팅">
-      <change afterPath="$PROJECT_DIR$/2-1.rendering/data/dummy-backend.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2-1.rendering/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/2-1.rendering/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2-1.rendering/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/2-1.rendering/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4-2.ApiRouteProject/helpers/db-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/4-2.ApiRouteProject/helpers/db-util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="5.ReactContext" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
