@@ -1,6 +1,10 @@
-const handler = (req,res) => {
+import {MongoClient} from "mongodb";
+
+const handler = async (req,res) => {
 
     const eventId = req.query.eventId;
+
+    const client = await MongoClient.connect("mongodb+srv://user_park:RRX7aSGEKsLsGll6@cluster0.jyvgm.mongodb.net/events?retryWrites=true&w=majority");
 
     if(req.method === 'POST'){
         // add server-side validation
@@ -16,12 +20,15 @@ const handler = (req,res) => {
             return;
         }
         const newComment = {
-            id: new Date().toISOString(),
             email,
             name,
-            text
+            text,
+            eventId
         }
-        console.log(newComment);
+        const db = client.db();
+        const result = await db.collection('comments').insertOne(newComment);
+        console.log(result);
+        newComment.id = result.insertedId;
         res.status(201).json({message:'Added comment.', comment: newComment});
     }
     if(req.method === 'GET'){
@@ -32,6 +39,7 @@ const handler = (req,res) => {
 
         res.status(200).json({comments: dummyList});
     }
+    client.close();
 }
 
 export default handler;
