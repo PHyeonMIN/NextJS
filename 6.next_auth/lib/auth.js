@@ -5,7 +5,7 @@ export const hashPassword = async (password) => {
     return hashedPassword;
 }
 
-export async const verifyPassword = (password, hashedPassword) => {
+export const verifyPassword = async (password, hashedPassword) => {
     const isValid = compare(password, hashedPassword);
     return isValid;
 }
